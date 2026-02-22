@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CommentMail for LinkedIn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+
+<body>
+
+  <div id="disclosure-overlay" class="disclosure-overlay hidden">
+    <div class="disclosure-box">
+      <div class="disclosure-title">Before you begin</div>
+      <div class="disclosure-body">
+        CommentMail extracts email addresses that LinkedIn users have
+        publicly posted in comment sections. All data stays on your
+        device — nothing is transmitted anywhere.
+        You are responsible for using extracted data in compliance with
+        applicable privacy laws (GDPR, CAN-SPAM) and LinkedIn's Terms of Service.
+        Do not use for spam or harassment.
+      </div>
+      <button id="disclosure-accept" class="btn-primary">I understand — Get Started</button>
+      <div class="disclosure-sub">This message will not appear again.</div>
+    </div>
+  </div>
+
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-wrap">
+        <img src="icons/logo-sidepanel.png" alt="" class="logo logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg class="logo logo-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display: none;">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </div>
+      <div class="title-block">
+        <h1>CommentMail</h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <button id="refresh-btn" class="icon-btn" title="Reset / New post" type="button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+        </svg>
+      </button>
+      <button id="settings-btn" class="icon-btn" title="Settings" aria-haspopup="true" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-1.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h1.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v1.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-1.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+      <div id="settings-dropdown" class="settings-dropdown hidden" role="menu">
+        <button id="theme-btn" class="settings-item" role="menuitem">
+          <span class="settings-item-label">Theme</span>
+          <span id="theme-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <div id="controls-status" class="controls-status status-ready">
+        <div id="status-dot" class="status-dot"></div>
+        <span id="status-text" class="status-text">Ready to Scan</span>
+      </div>
+      <button id="start-btn" class="btn-primary">
+        <svg class="btn-icon btn-icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="btn-icon btn-icon-stop" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+        <span class="btn-label">Start Scan</span>
+      </button>
+
+      <div class="options-section">
+        <div class="toggles">
+          <label class="toggle-row">
+            <span>Include replies</span>
+            <input type="checkbox" id="toggle-replies" checked>
+            <span class="toggle-slider"></span>
+          </label>
+          <label class="toggle-row">
+            <span>Auto-load more comments</span>
+            <input type="checkbox" id="toggle-load" checked>
+            <span class="toggle-slider"></span>
+          </label>
+          <label class="toggle-row">
+            <span>Export comment text (CSV)</span>
+            <input type="checkbox" id="toggle-context" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div id="stats-bar" class="stats-bar">
+        <span class="stats-item"><span id="stat-scanned">0</span> comments scanned</span>
+        <span class="stats-divider">·</span>
+        <span class="stats-item stats-emails"><span id="stat-found">0</span> unique emails</span>
+      </div>
+    </div>
+
+    <div id="scanning-view" class="scanning-view hidden">
+      <div class="scanning-inner">
+        <div id="scanning-post-url" class="scanning-post-url" aria-live="polite"></div>
+        <h2 class="scanning-headline">
+          <span id="scanning-dot" class="pulse-dot" aria-hidden="true"></span>
+          Scraping...
+        </h2>
+        <p id="scanning-phase" class="scanning-phase">Starting...</p>
+        <div class="scanning-progress-wrap">
+          <div class="scanning-progress" role="progressbar" aria-valuetext="Loading"></div>
+        </div>
+        <div class="scanning-stats">
+          <div class="scanning-stat-block">
+            <span class="scanning-stat-label">Comments</span>
+            <span id="scanning-stat-comments" class="scanning-stat-value scanning-stat-neutral">0</span>
+          </div>
+          <div class="scanning-stat-block">
+            <span class="scanning-stat-label">Emails</span>
+            <span id="scanning-stat-emails" class="scanning-stat-value">0</span>
+          </div>
+        </div>
+        <div id="scanning-coverage-stats" class="scanning-coverage-stats" aria-live="polite"></div>
+        <div id="scanning-live-feed" class="scanning-live-feed" aria-live="polite">
+          <div id="scanning-live-feed-label" class="scanning-live-feed-label hidden">Recent</div>
+          <div id="scanning-live-placeholder" class="scanning-live-placeholder">Emails will appear here as they're found...</div>
+          <ul id="scanning-live-list" class="scanning-live-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="results-container" class="results-container">
+      <div id="completion-banner" class="completion-banner hidden" role="status"></div>
+      <div id="results-placeholder" class="empty-state">
+        <div class="empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <p class="empty-title">No emails yet</p>
+        <p class="empty-sub">Open a post and click Start</p>
+        <div id="warning-banner" class="warning-banner hidden">Not on a post • Open a post to scan</div>
+      </div>
+
+      <div id="results-table-wrapper" class="results-table-wrapper hidden">
+        <table id="results-table">
+          <thead>
+            <tr>
+              <th width="5%">#</th>
+              <th width="26%">Email</th>
+              <th width="20%">Author</th>
+              <th width="8%">Source</th>
+              <th width="18%">Title</th>
+              <th width="7%">Prof</th>
+              <th width="8%">Action</th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+        <div class="results-actions">
+          <button id="new-scan-btn" type="button" class="btn-new-scan">↺ New Scan</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-row-1">
+      <div class="footer-left">
+        <span id="unique-count">0 emails</span>
+      </div>
+      <div class="footer-actions">
+        <button id="copy-btn" class="btn-footer btn-secondary" disabled>Copy</button>
+        <button id="download-btn" class="btn-footer btn-primary-footer" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download CSV
+      </button>
+      </div>
+    </div>
+    <!-- Row 2: trust links (middot separators, clickable vs plain) -->
+    <div class="footer-trust">
+      <button id="footer-privacy" type="button" class="footer-link">Privacy</button>
+      <span class="footer-sep" aria-hidden="true">&#183;</span>
+      <button id="footer-terms" type="button" class="footer-link">Terms</button>
+      <span class="footer-sep" aria-hidden="true">&#183;</span>
+      <a class="footer-link"
+         href="https://www.linkedin.com/in/shailesh-entrant/"
+         target="_blank" rel="noopener noreferrer">Built by Shailesh Kumar</a>
+      <span class="footer-sep" aria-hidden="true">&#183;</span>
+      <span class="footer-plain">Not affiliated with LinkedIn</span>
+    </div>
+    <!-- Row 3: data statement -->
+    <div class="footer-data-statement">
+      Data is stored locally on your device only.
+    </div>
+  </footer>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span id="modal-title" class="modal-title"></span>
+        <button id="modal-close" type="button" class="modal-close">✕</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+
+</html>

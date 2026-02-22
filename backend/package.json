@@ -1,0 +1,15 @@
+{
+  "name": "linkedin-post-scraper",
+  "version": "1.0.0",
+  "description": "Background scraper for LinkedIn post commenters (Puppeteer). Run on your machine like PhantomBuster.",
+  "type": "module",
+  "main": "scrape-post.js",
+  "scripts": {
+    "login": "node scrape-post.js --login",
+    "scrape": "node scrape-post.js",
+    "start": "node scrape-post.js"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}
