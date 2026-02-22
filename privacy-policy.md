@@ -43,4 +43,4 @@ You are responsible for using extracted data in compliance with:
 
 ## Contact
 
-For privacy-related questions, open an issue in the extension’s project repository or contact the developer through the Chrome Web Store listing.
+For privacy-related questions, open an issue in the extension’s project repository or contact the developer via LinkedIn: [Shailesh Kumar](https://www.linkedin.com/in/shailesh-entrant/). You can also open an issue in the [CommentMail GitHub repository](https://github.com/skumar54uncc/CommentMail). Once the extension is on the Chrome Web Store, use the listing contact option.
