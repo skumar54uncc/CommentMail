@@ -1,6 +1,6 @@
 /**
  * sidepanel.js
- * Logic for the LinkedIn Email Harvester side panel
+ * Logic for the CommentMail side panel
  */
 // Fix 1: normalizeCommentText .co false positive resolved (content.js)
 // Fix 2: buildDisplayList one-row-per-email enforced

@@ -191,7 +191,7 @@ if (window.__harvesterContentInjected) {
 } else {
     window.__harvesterContentInjected = true;
     window.addEventListener("message", handleInjectorMessage);
-    showToast("Scraper Ready");
+    showToast("CommentMail Ready");
 }
 
 let harvesterExpectedNonce = null;
@@ -1687,7 +1687,7 @@ function fallbackDomScan() {
                 linkedinProfileUrl: linkedinProfileUrl || "",
                 postUrl: window.location.href,
                 extractedAtISO: scanStartTimestamp || new Date().toISOString(),
-                commentSnippet: (text.substring(0, 100) || "Scraped via DOM fallback").replace(/\s+/g, " "),
+                commentSnippet: (text.substring(0, 100) || "Extracted via DOM fallback").replace(/\s+/g, " "),
                 sourceType: "fallback",
                 seenCount: 1
             };

@@ -172,10 +172,10 @@ CommentMail extracts **email addresses** from **LinkedIn post comments and their
 **Hard blockers (must fix before submit):**
 
 1. **Privacy Policy URL** — Host `privacy-policy.md` on GitHub Pages; add URL in CWS dashboard (CWS rejects if empty).
-2. **Zip must not include backend/** — Package only the `linkedin-email-harvester` folder. Do not include the repo's `backend/` (Puppeteer script); it can trigger rejection. See **CWS-SUBMISSION-CHECKLIST.md**.
+2. **Zip must not include backend/** — Package only the **CommentMail** extension folder. Do not include the repo's `backend/` (Puppeteer script); it can trigger rejection. See **CWS-SUBMISSION-CHECKLIST.md**.
 3. Prepare store listing: short description, screenshots (1280×800 or 640×400; Ready, Scanning, Results). Do not use "scrape" or "harvester"; use "extract," "collect," "CommentMail." Single-purpose: *"CommentMail extracts email addresses that LinkedIn users have publicly posted in post comments, saving them to a downloadable CSV."*
 4. Use this document (and any reviewer feedback from Claude) to answer “Justification” and “Privacy” sections.
-5. Submit the extension package (zip of linkedin-email-harvester or built artifact) and complete all required fields.
+5. Submit the extension package (zip of the CommentMail extension folder or built artifact) and complete all required fields.
 6. After submission, respond to any reviewer questions with references to this overview and to the in-repo SECURITY.md / SCRAPING-ARCHITECTURE.md if present.
 
 **What helps review:** No chrome.debugger; first-run disclosure; "Data stays on device" in UI; minimal permissions; isLinkedInPostUrl() scope; clean CSP.
@@ -216,7 +216,7 @@ After you have Claude’s (or another reviewer’s) feedback and have addressed 
    - Paste this URL in the CWS developer dashboard Privacy field — CWS rejects if empty.
 
 3. **Package the extension**
-   - Zip **only** the `linkedin-email-harvester` folder (the one that contains `manifest.json`).
+   - Zip **only** the **CommentMail** extension folder (the one that contains `manifest.json`).
    - **Do not** include the repo's `backend/` folder — it contains a Puppeteer script and can trigger rejection. See **CWS-SUBMISSION-CHECKLIST.md**.
    - Do not include `.git`, `node_modules`, or parent-level files.
 

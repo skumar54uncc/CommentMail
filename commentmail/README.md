@@ -58,7 +58,7 @@ Since this is a developer build, you need to load it manually:
 2.  Open Chrome and navigate to `chrome://extensions`.
 3.  Enable **Developer mode** (toggle in the top right corner).
 4.  Click **Load unpacked**.
-5.  Select the `linkedin-email-harvester` folder (the one containing `manifest.json`).
+5.  Select the **CommentMail** folder (the one containing `manifest.json`).
 6.  The extension **CommentMail for LinkedIn** should appear.
 
 ---
